@@ -1,0 +1,20 @@
+<pre>
+1 if (index < simpleByteArray.length) {
+2 index = simpleByteArray[index | 0];
+3 index = (((index * TABLE1_STRIDE)|0) & (TABLE1_BYTES-1))|0;
+4 localJunk ^= probeTable[index|0]|0;
+5 }
+</pre>
+
+
+<pre>
+1 cmpl r15,[rbp-0xe0] ; Compare index (r15) against simpleByteArray.length
+2 jnc 0x24dd099bb870 ; If index >= length, branch to instruction after movq below
+3 REX.W leaq rsi,[r12+rdx*1] ; Set rsi=r12+rdx=addr of first byte in simpleByteArray
+4 movzxbl rsi,[rsi+r15*1] ; Read byte from address rsi+r15 (= base address+index)
+5 shll rsi, 12 ; Multiply rsi by 4096 by shifting left 12 bits}\%\
+6 andl rsi,0x1ffffff ; AND reassures JIT that next operation is in-bounds
+7 movzxbl rsi,[rsi+r8*1] ; Read from probeTable
+8 xorl rsi,rdi ; XOR the read result onto localJunk
+9 REX.W movq rdi,rsi ; Copy localJunk into rdi
+</pre>

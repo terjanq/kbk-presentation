@@ -1,0 +1,7 @@
+<script>
+
+document.documentElement.innerHTML = `<pre>You have come here from: ${document.referrer}, 
+and I will try to change your location in parent tab in case rel='noopener noreferrer' has not been set`;
+window.opener.location = "fakeLoginPage.html";
+
+</script>

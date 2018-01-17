@@ -1,0 +1,21 @@
+<html><head>
+	
+	<script src='window_opener.js'></script>
+</head>
+
+<body>
+
+<a href="#" onclick='var x=new newWindow("http://gmail.com"); event.preventDefault(); event.stopPropagation();'>gmail.com</a>
+<br><br>
+<a href="maliciousPage.html" target="_blank">Malicious Page</a>
+<br><br>
+<a href="maliciousPage.html" target="_blank" rel="noopener">Malicious Page (noopener)</a>
+<br><br>
+<a href="maliciousPage.html" target="_blank" rel="noopener noreferrer">Malicious Page (noopener noreferrer)</a>
+
+</body>
+
+
+
+
+</html>
